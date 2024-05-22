@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SBS.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create"  type="button" class="btn btn-success m-1">Create</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+@*                 @Html.DisplayFor(modelItem => item.Image) *@
+            <img src="@item.Image" style="width:300px;height:150px">
+            </td>
+            <td>
+                    <a asp-action="Edit" type="button" class="btn btn-primary m-1" asp-route-id="@item.Id">Edit</a>
+                    <a asp-action="Details" type="button" class="btn btn-warning m-1" asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Delete" type="button" class="btn btn-danger m-1" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
